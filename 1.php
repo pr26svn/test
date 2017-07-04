@@ -18,31 +18,12 @@ $highBlockTypeProduct = array(
                 ),
                 'SHOW_FILTER' => 'S',
             )),
-            'UF_CODE' => array('Y', 'string', array(
-                'EDIT_FORM_LABEL' => array(
-                    'ru' => 'Символьный код',
-                ),
-                'LIST_COLUMN_LABEL' => array(
-                    'ru' => 'Символьный код',
-                ),
-            )),
             'UF_XML_ID' => array('N', 'string', array(
                 'EDIT_FORM_LABEL' => array(
                     'ru' => 'Внешний код',
                 ),
                 'LIST_COLUMN_LABEL' => array(
                     'ru' => 'Внешний код',
-                ),
-            )),
-            'UF_SORT' => array('Y', 'integer', array(
-                'SETTINGS' => array(
-                    'DEFAULT_VALUE' => 500,
-                ),
-                'EDIT_FORM_LABEL' => array(
-                    'ru' => 'Сортировка',
-                ),
-                'LIST_COLUMN_LABEL' => array(
-                    'ru' => 'Сортировка',
                 ),
             )),
             'UF_NAME' => array('Y', 'string', array(
@@ -305,33 +286,7 @@ try {
                     ),
                     'SHOW_FILTER' => 'S',
                 )),
-                'UF_CODE' => array('Y', 'string', array(
-                    'EDIT_FORM_LABEL' => array(
-                        'ru' => 'Символьный код',
-                    ),
-                    'LIST_COLUMN_LABEL' => array(
-                        'ru' => 'Символьный код',
-                    ),
-                )),
-                'UF_XML_ID' => array('N', 'string', array(
-                    'EDIT_FORM_LABEL' => array(
-                        'ru' => 'Внешний код',
-                    ),
-                    'LIST_COLUMN_LABEL' => array(
-                        'ru' => 'Внешний код',
-                    ),
-                )),
-                'UF_SORT' => array('Y', 'integer', array(
-                    'SETTINGS' => array(
-                        'DEFAULT_VALUE' => 500,
-                    ),
-                    'EDIT_FORM_LABEL' => array(
-                        'ru' => 'Сортировка',
-                    ),
-                    'LIST_COLUMN_LABEL' => array(
-                        'ru' => 'Сортировка',
-                    ),
-                )),
+
                 'UF_PRODUCT_ID' => array('Y', 'iblock_element', array(
                     'EDIT_FORM_LABEL' => array(
                         'ru' => 'Продукт',
@@ -358,7 +313,7 @@ try {
             )
         )
     );
-
+    $DB->StartTransaction();
     $idNewHighLoadBlock = createHighLoadBlock($highBlockTypeProduct1[0], $highBlockTypeProduct1[1], $highBlockTypeProduct1[2]);
 
 
@@ -383,33 +338,7 @@ try {
                     ),
                     'SHOW_FILTER' => 'S',
                 )),
-                'UF_CODE' => array('Y', 'string', array(
-                    'EDIT_FORM_LABEL' => array(
-                        'ru' => 'Символьный код',
-                    ),
-                    'LIST_COLUMN_LABEL' => array(
-                        'ru' => 'Символьный код',
-                    ),
-                )),
-                'UF_XML_ID' => array('N', 'string', array(
-                    'EDIT_FORM_LABEL' => array(
-                        'ru' => 'Внешний код',
-                    ),
-                    'LIST_COLUMN_LABEL' => array(
-                        'ru' => 'Внешний код',
-                    ),
-                )),
-                'UF_SORT' => array('Y', 'integer', array(
-                    'SETTINGS' => array(
-                        'DEFAULT_VALUE' => 500,
-                    ),
-                    'EDIT_FORM_LABEL' => array(
-                        'ru' => 'Сортировка',
-                    ),
-                    'LIST_COLUMN_LABEL' => array(
-                        'ru' => 'Сортировка',
-                    ),
-                )),
+
                 'UF_USER_ID' => array('Y', Bitrix\Main\UserTable, array(
 
                     'EDIT_FORM_LABEL' => array(
@@ -437,7 +366,7 @@ try {
             )
         )
     );
-
+    $DB->StartTransaction();
     $idNewHighLoadBlock = createHighLoadBlock($highBlockTypeProduct2[0], $highBlockTypeProduct2[1], $highBlockTypeProduct2[2]);
 
 
