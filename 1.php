@@ -1,6 +1,7 @@
 <?
 //Еще был варианте через описания ORM создать таблицы и к ним привязать HL инфоблоки при создании, но почему то пошел этим путем
 /*---------------------------*/
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 $highBlockTypeProduct = array(
     'catalog_h_l',
     'CatalogHL',
@@ -17,14 +18,6 @@ $highBlockTypeProduct = array(
                     'SIZE' => 60,
                 ),
                 'SHOW_FILTER' => 'S',
-            )),
-            'UF_XML_ID' => array('N', 'string', array(
-                'EDIT_FORM_LABEL' => array(
-                    'ru' => 'Внешний код',
-                ),
-                'LIST_COLUMN_LABEL' => array(
-                    'ru' => 'Внешний код',
-                ),
             )),
             'UF_NAME' => array('Y', 'string', array(
                 'EDIT_FORM_LABEL' => array(
@@ -266,7 +259,7 @@ try {
     $idNewHighLoadBlock = createHighLoadBlock($highBlockTypeProduct[0], $highBlockTypeProduct[1], $highBlockTypeProduct[2]);
 
 
-    $DB->Commit();
+
     /*---------------------*/
 
     $highBlockTypeProduct1 = array(
@@ -313,11 +306,11 @@ try {
             )
         )
     );
-    $DB->StartTransaction();
+
     $idNewHighLoadBlock = createHighLoadBlock($highBlockTypeProduct1[0], $highBlockTypeProduct1[1], $highBlockTypeProduct1[2]);
 
 
-    $DB->Commit();
+
     /*---------------------*/
 
 
@@ -366,14 +359,14 @@ try {
             )
         )
     );
-    $DB->StartTransaction();
+
     $idNewHighLoadBlock = createHighLoadBlock($highBlockTypeProduct2[0], $highBlockTypeProduct2[1], $highBlockTypeProduct2[2]);
 
 
-    $DB->Commit();
+
 
     /*----------------------*/
-
+    $DB->Commit();
     echo implode("<br>\n", $info);
 
 } catch (\Bitrix\Main\SystemException $e) {
