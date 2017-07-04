@@ -1,24 +1,15 @@
 <?
 //Еще был варианте через описания ORM создать таблицы и к ним привязать HL инфоблоки при создании, но почему то пошел этим путем
 /*---------------------------*/
+define("NOT_CHECK_PERMISSIONS", true);
+$_SERVER["DOCUMENT_ROOT"] = __DIR__;
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 $highBlockTypeProduct = array(
     'catalog_h_l',
     'CatalogHL',
     array(
         'FIELDS' => array(
-            'UF_ID' => array('Y', 'string', array(
-                'EDIT_FORM_LABEL' => array(
-                    'ru' => 'Уникальный ключ',
-                ),
-                'LIST_COLUMN_LABEL' => array(
-                    'ru' => 'Уникальный ключ',
-                ),
-                'SETTINGS' => array(
-                    'SIZE' => 60,
-                ),
-                'SHOW_FILTER' => 'S',
-            )),
+
             'UF_NAME' => array('Y', 'string', array(
                 'EDIT_FORM_LABEL' => array(
                     'ru' => 'Название',
@@ -29,10 +20,10 @@ $highBlockTypeProduct = array(
             )),
         ),
         'ALTER' => array(
-            'ALTER TABLE #TABLE_NAME# MODIFY UF_ID VARCHAR(100);',
+            'ALTER TABLE #TABLE_NAME# MODIFY UF_NAME VARCHAR(100);',
         ),
         'INDEXES' => array(
-            array('#TABLE_NAME#', 'ix_#TABLE_NAME#_key', array('UF_ID'))
+            array('#TABLE_NAME#', 'ix_#TABLE_NAME#'.time().'_key', array('UF_ID'))
         )
     )
 );
@@ -252,7 +243,7 @@ function createHighLoadBlock($tableName, $highBlockName, array $hlData)
 
 global $DB;
 
-$DB->StartTransaction();
+//$DB->StartTransaction();
 
 try {
 
@@ -267,18 +258,6 @@ try {
         'ProductAssignHL',
         array(
             'FIELDS' => array(
-                'UF_ID' => array('Y', 'string', array(
-                    'EDIT_FORM_LABEL' => array(
-                        'ru' => 'Уникальный ключ',
-                    ),
-                    'LIST_COLUMN_LABEL' => array(
-                        'ru' => 'Уникальный ключ',
-                    ),
-                    'SETTINGS' => array(
-                        'SIZE' => 60,
-                    ),
-                    'SHOW_FILTER' => 'S',
-                )),
 
                 'UF_PRODUCT_ID' => array('Y', 'iblock_element', array(
                     'EDIT_FORM_LABEL' => array(
@@ -299,10 +278,10 @@ try {
                 )),
             ),
             'ALTER' => array(
-                'ALTER TABLE #TABLE_NAME# MODIFY UF_ID VARCHAR(100);',
+
             ),
             'INDEXES' => array(
-                array('#TABLE_NAME#', 'ix_#TABLE_NAME#_key', array('UF_ID'))
+                array('#TABLE_NAME#', 'ix_#TABLE_NAME#'.time().'_key', array('UF_PRODUCT_ID'))
             )
         )
     );
@@ -319,18 +298,7 @@ try {
         'UserAssignHL',
         array(
             'FIELDS' => array(
-                'UF_ID' => array('Y', 'string', array(
-                    'EDIT_FORM_LABEL' => array(
-                        'ru' => 'Уникальный ключ',
-                    ),
-                    'LIST_COLUMN_LABEL' => array(
-                        'ru' => 'Уникальный ключ',
-                    ),
-                    'SETTINGS' => array(
-                        'SIZE' => 60,
-                    ),
-                    'SHOW_FILTER' => 'S',
-                )),
+
 
                 'UF_USER_ID' => array('Y', Bitrix\Main\UserTable, array(
 
@@ -352,10 +320,10 @@ try {
                 )),
             ),
             'ALTER' => array(
-                'ALTER TABLE #TABLE_NAME# MODIFY UF_ID VARCHAR(100);',
+
             ),
             'INDEXES' => array(
-                array('#TABLE_NAME#', 'ix_#TABLE_NAME#_key', array('UF_ID'))
+                array('#TABLE_NAME#', 'ix_#TABLE_NAME#'.time().'_key', array('UF_USER_ID'))
             )
         )
     );
@@ -366,7 +334,7 @@ try {
 
 
     /*----------------------*/
-    $DB->Commit();
+   // $DB->Commit();
     echo implode("<br>\n", $info);
 
 } catch (\Bitrix\Main\SystemException $e) {
